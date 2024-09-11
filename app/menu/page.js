@@ -323,10 +323,10 @@ export default function Menu() {
           style={{ backgroundImage: `url(${irieBackGround.src})` }}
         >
           <div className="h-[65vh] min-h-[440px] flex flex-col gap-5 items-center justify-center">
-            <p className="font-alexBrush text-amber-600 text-5xl">
+            <p className="font-alexBrush text-amber-600 text-2xl lg:text-5xl">
               Check out our
             </p>
-            <h1 className="text-sky-950 text-4xl sm:text-5xl lg:text-[122px] tracking-[50px] font-bold">
+            <h1 className="text-sky-950 text-6xl lg:text-[122px] tracking-[50px] font-bold">
               Menu
             </h1>
           </div>
