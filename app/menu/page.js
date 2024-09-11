@@ -143,7 +143,7 @@ const menuData = {
       photo: placeholder,
     },
   ],
-  Dessert: [
+  Desserts: [
     {
       id: 17,
       name: "Carrot Cake with Cream Cheese Sauce",
@@ -288,22 +288,6 @@ const menuData = {
       name: "Water",
       price: 500,
       description: "Bottled water",
-      photo: placeholder,
-    },
-  ],
-  Desserts: [
-    {
-      id: 17,
-      name: "Carrot Cake with Cream Cheese Sauce",
-      price: 10800,
-      description: "Moist carrot cake topped with rich cream cheese frosting",
-      photo: placeholder,
-    },
-    {
-      id: 18,
-      name: "Bread Pudding with Creamy Rum Sauce",
-      price: 9800,
-      description: "Warm bread pudding drizzled with a creamy rum sauce",
       photo: placeholder,
     },
   ],
