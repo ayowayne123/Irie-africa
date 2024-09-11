@@ -1,25 +1,51 @@
 "use client";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import emailjs from "emailjs-com";
 
 export default function Review() {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
   const [review, setReview] = useState("");
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  // Function to handle email sending via EmailJS
+  const sendEmail = (e) => {
     e.preventDefault();
-    // Log the review and rating to the console
-    console.log({
-      name: name,
-      rating: rating,
-      review: review,
-    });
-    // Reset the form
-    setName("");
-    setReview("");
-    setRating(0);
+    setLoading(true);
+
+    const templateParams = {
+      username: name, // maps to username in the email template
+      userStars: rating, // maps to userStars in the email template
+      userMessage: review, // maps to userReview in the email template
+    };
+
+    // Replace with your EmailJS user ID, service ID, and template ID
+    emailjs
+      .send(
+        "service_zh6m7eo", // e.g., service_xxxxxxx
+
+        "template_4cfjeyn", // e.g., template_xxxxxxx
+        templateParams,
+        "Ol9P2TQGZSxwK5-r9" // e.g., user_xxxxxxx
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          setMessage("Review submitted successfully!");
+          setLoading(false);
+          setName("");
+          setReview("");
+          setRating(0);
+        },
+        (err) => {
+          console.log("FAILED...", err);
+          setMessage("Failed to submit review. Please try again later.");
+          setLoading(false);
+        }
+      );
   };
 
   return (
@@ -55,7 +81,7 @@ export default function Review() {
         </div>
 
         {/* Review Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={sendEmail} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-lg font-medium">
               Your Name:
@@ -89,10 +115,17 @@ export default function Review() {
           <button
             type="submit"
             className="w-full bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-orange-800 transition-transform transform hover:scale-105"
+            disabled={loading}
           >
-            Submit Review
+            {loading ? "Submitting..." : "Submit Review"}
           </button>
         </form>
+
+        {message && (
+          <p className="mt-4 text-center text-lg font-semibold text-green-600">
+            {message}
+          </p>
+        )}
       </div>
     </div>
   );
