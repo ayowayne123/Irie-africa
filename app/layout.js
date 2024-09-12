@@ -25,8 +25,8 @@ const noto = Noto_Sans({
 });
 
 export const metadata = {
-  title: "Irie Africa",
-  description: "Visit Irie Africa to taste beautiful meals",
+  title: "IRIE RESTO LOUNGE",
+  description: "Visit IRIE RESTO LOUNGE to taste beautiful meals",
 };
 
 export default function RootLayout({ children }) {

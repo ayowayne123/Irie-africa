@@ -8,6 +8,7 @@ export default function Review() {
   const [hover, setHover] = useState(null);
   const [review, setReview] = useState("");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -18,18 +19,18 @@ export default function Review() {
 
     const templateParams = {
       username: name, // maps to username in the email template
-      userStars: rating, // maps to userStars in the email template
-      userMessage: review, // maps to userReview in the email template
+      userStars: rating,
+      userMessage: review,
+      userEmail: email,
     };
 
-    // Replace with your EmailJS user ID, service ID, and template ID
     emailjs
       .send(
-        "service_zh6m7eo", // e.g., service_xxxxxxx
+        "service_zh6m7eo",
 
-        "template_4cfjeyn", // e.g., template_xxxxxxx
+        "template_4cfjeyn",
         templateParams,
-        "Ol9P2TQGZSxwK5-r9" // e.g., user_xxxxxxx
+        "Ol9P2TQGZSxwK5-r9"
       )
       .then(
         (response) => {
@@ -93,6 +94,20 @@ export default function Review() {
               onChange={(e) => setName(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-600"
               placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-lg font-medium">
+              Your Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-600"
+              placeholder="Enter your Email"
               required
             />
           </div>

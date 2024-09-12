@@ -19,7 +19,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold mb-8 animate-fade-in font-noto tracking-normal">
           Welcome to{" "}
           <span className="text-orange-800 font-bebas tracking-wider">
-            Irie Restaurant
+            IRIE RESTO LOUNGE
           </span>
         </h1>
         <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
