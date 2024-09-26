@@ -9,6 +9,8 @@ export default function Review() {
   const [review, setReview] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState(""); // Added phone number state
+  const [category, setCategory] = useState(""); // Added category state
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -18,16 +20,17 @@ export default function Review() {
     setLoading(true);
 
     const templateParams = {
-      username: name, // maps to username in the email template
+      username: name,
+      userPhone: phone, // Sending the phone number
       userStars: rating,
       userMessage: review,
       userEmail: email,
+      reviewCategory: category, // Sending the selected category
     };
 
     emailjs
       .send(
         "service_zh6m7eo",
-
         "template_4cfjeyn",
         templateParams,
         "Ol9P2TQGZSxwK5-r9"
@@ -38,8 +41,10 @@ export default function Review() {
           setMessage("Review submitted successfully!");
           setLoading(false);
           setName("");
+          setPhone(""); // Clear phone number after submission
           setReview("");
           setRating(0);
+          setCategory(""); // Clear category after submission
         },
         (err) => {
           console.log("FAILED...", err);
@@ -97,6 +102,23 @@ export default function Review() {
               required
             />
           </div>
+
+          {/* Phone Number */}
+          <div>
+            <label htmlFor="phone" className="block text-lg font-medium">
+              Your Phone Number:
+            </label>
+            <input
+              type="text"
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-600"
+              placeholder="Enter your phone number"
+              required
+            />
+          </div>
+
           <div>
             <label htmlFor="email" className="block text-lg font-medium">
               Your Email
@@ -110,6 +132,27 @@ export default function Review() {
               placeholder="Enter your Email"
               required
             />
+          </div>
+
+          {/* Category Dropdown */}
+          <div>
+            <label htmlFor="category" className="block text-lg font-medium">
+              Review Category:
+            </label>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-600"
+              required
+            >
+              <option value="" disabled>
+                Select Category
+              </option>
+              <option value="Food">Food</option>
+              <option value="Music">Music</option>
+              <option value="Ambiance">Ambiance</option>
+            </select>
           </div>
 
           <div>
