@@ -5,7 +5,7 @@ import irieBackGround from "@/public/images/irieBackGround.jpg";
 import placeholder from "@/public/images/placeholder.png";
 
 const categories = [
-  "All",
+  // "All",
   "Starters",
   "Entrees",
   "Desserts",
@@ -298,8 +298,9 @@ const getAllMenuItems = () => {
 };
 
 export default function Menu() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [menuItems, setMenuItems] = useState(getAllMenuItems());
+  const [selectedCategory, setSelectedCategory] = useState("Starters");
+  // const [menuItems, setMenuItems] = useState(getAllMenuItems());
+  const [menuItems, setMenuItems] = useState(menuData["Starters"]);
   const [isFading, setIsFading] = useState(false);
 
   const handleCategoryChange = (category) => {
